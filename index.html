@@ -35,8 +35,8 @@
   .result { display: none; }
   .result.active { display: block; }
   .result-label { font-size: 9px; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold); margin-bottom: 32px; display: block; }
-  .result-text { font-family: 'Libre Baskerville', serif; font-size: 18px; font-weight: 400; line-height: 1.9; color: var(--text); }
-  .result-text strong { font-weight: 700; font-style: italic; }
+  .book-title { font-family: 'Libre Baskerville', serif; font-size: 28px; font-weight: 700; font-style: italic; color: var(--text); background: #e8dfc8; padding: 6px 12px; display: inline-block; line-height: 1.4; }
+  .book-body { font-family: 'Libre Baskerville', serif; font-size: 18px; font-weight: 400; line-height: 1.9; color: var(--text); margin-top: 28px; }
   .reset-btn { margin-top: 56px; cursor: pointer; background: transparent; border: none; color: var(--muted); font-family: 'Montserrat', sans-serif; font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; text-decoration: underline; text-underline-offset: 4px; padding: 0; transition: color 0.2s; display: block; }
   .reset-btn:hover { color: var(--text); }
   .error { display: none; color: var(--danger); font-size: 11px; margin-top: 16px; letter-spacing: 0.05em; }
@@ -97,7 +97,7 @@
   <div class="result" id="result">
     <div class="rule"><div class="rule-line"></div><div class="rule-diamond"></div><div class="rule-line"></div></div>
     <span class="result-label">your recommendation</span>
-    <div class="result-text" id="resultContent"></div>
+    <div id="resultContent"></div>
     <button class="reset-btn" onclick="reset()">start over</button>
   </div>
 </div>
@@ -132,9 +132,16 @@
       const data = await response.json();
       if (!response.ok) throw new Error(data.error?.message || 'error');
       const text = data.content?.[0]?.text || '';
+      const parts = text.split(/\*\*(.*?)\*\*/);
+      let html = '';
+      if (parts.length >= 3) {
+        html = '<div class="book-title">' + parts[1] + '</div><div class="book-body">' + parts.slice(2).join('') + '</div>';
+      } else {
+        html = '<div class="book-body">' + text + '</div>';
+      }
       document.getElementById('loading').classList.remove('active');
       document.getElementById('result').classList.add('active');
-      document.getElementById('resultContent').innerHTML = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+      document.getElementById('resultContent').innerHTML = html;
     } catch(err) {
       document.getElementById('loading').classList.remove('active');
       document.getElementById('formSection').style.display = 'block';
