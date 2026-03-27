@@ -7,372 +7,52 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --bg: #0a0a0a;
-    --surface: #111111;
-    --border: #222222;
-    --text: #e8e0d4;
-    --text-muted: #6b6560;
-    --accent: #c8a97e;
-    --accent-dim: #7a6448;
-    --danger: #8b3a3a;
-  }
-
-  html, body {
-    height: 100%;
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'DM Mono', monospace;
-    font-weight: 300;
-    font-size: 13px;
-    line-height: 1.7;
-    overflow-x: hidden;
-  }
-
-  /* Grain overlay */
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 999;
-    opacity: 0.4;
-  }
-
-  .container {
-    max-width: 640px;
-    margin: 0 auto;
-    padding: 80px 24px 120px;
-    min-height: 100vh;
-  }
-
-  /* Header */
-  header {
-    margin-bottom: 72px;
-    opacity: 0;
-    animation: fadeUp 0.8s ease forwards;
-  }
-
-  .eyebrow {
-    font-size: 10px;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 20px;
-  }
-
-  h1 {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(38px, 8vw, 56px);
-    font-weight: 300;
-    font-style: italic;
-    line-height: 1.1;
-    color: var(--text);
-    margin-bottom: 16px;
-  }
-
-  .subtitle {
-    color: var(--text-muted);
-    font-size: 12px;
-    max-width: 380px;
-    line-height: 1.8;
-  }
-
-  /* Form */
-  .form {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-  }
-
-  .question-block {
-    opacity: 0;
-    animation: fadeUp 0.8s ease forwards;
-  }
-  .question-block:nth-child(1) { animation-delay: 0.1s; }
-  .question-block:nth-child(2) { animation-delay: 0.2s; }
-  .question-block:nth-child(3) { animation-delay: 0.3s; }
-  .question-block:nth-child(4) { animation-delay: 0.4s; }
-
-  .question-label {
-    display: block;
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent-dim);
-    margin-bottom: 16px;
-  }
-
-  .question-text {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 22px;
-    font-weight: 300;
-    color: var(--text);
-    margin-bottom: 20px;
-    line-height: 1.4;
-  }
-
-  /* Pill options */
-  .options {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .pill {
-    cursor: pointer;
-    padding: 8px 16px;
-    border: 1px solid var(--border);
-    border-radius: 2px;
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    font-weight: 300;
-    color: var(--text-muted);
-    background: transparent;
-    transition: all 0.2s ease;
-    letter-spacing: 0.05em;
-  }
-
-  .pill:hover {
-    border-color: var(--accent-dim);
-    color: var(--text);
-  }
-
-  .pill.selected {
-    border-color: var(--accent);
-    color: var(--accent);
-    background: rgba(200, 169, 126, 0.06);
-  }
-
-  /* Textarea */
-  textarea {
-    width: 100%;
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid var(--border);
-    color: var(--text);
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 18px;
-    font-weight: 300;
-    font-style: italic;
-    padding: 12px 0;
-    resize: none;
-    outline: none;
-    line-height: 1.6;
-    transition: border-color 0.2s ease;
-    min-height: 80px;
-  }
-
-  textarea::placeholder {
-    color: var(--text-muted);
-    font-style: italic;
-  }
-
-  textarea:focus {
-    border-bottom-color: var(--accent-dim);
-  }
-
-  /* Submit */
-  .submit-area {
-    padding-top: 16px;
-    opacity: 0;
-    animation: fadeUp 0.8s ease 0.5s forwards;
-  }
-
-  .submit-btn {
-    cursor: pointer;
-    background: transparent;
-    border: 1px solid var(--accent-dim);
-    color: var(--accent);
-    font-family: 'DM Mono', monospace;
-    font-size: 11px;
-    font-weight: 400;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    padding: 16px 40px;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .submit-btn::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: var(--accent);
-    transform: translateX(-100%);
-    transition: transform 0.3s ease;
-    z-index: 0;
-  }
-
-  .submit-btn:hover::before {
-    transform: translateX(0);
-  }
-
-  .submit-btn:hover {
-    color: var(--bg);
-  }
-
-  .submit-btn span {
-    position: relative;
-    z-index: 1;
-  }
-
-  .submit-btn:disabled {
-    opacity: 0.3;
-    cursor: not-allowed;
-  }
-
-  .submit-btn:disabled::before {
-    display: none;
-  }
-
-  /* Loading */
-  .loading {
-    display: none;
-    padding: 60px 0;
-    text-align: center;
-  }
-
+  :root { --bg: #0a0a0a; --border: #222222; --text: #e8e0d4; --text-muted: #6b6560; --accent: #c8a97e; --accent-dim: #7a6448; --danger: #8b3a3a; }
+  html, body { height: 100%; background: var(--bg); color: var(--text); font-family: 'DM Mono', monospace; font-weight: 300; font-size: 13px; line-height: 1.7; overflow-x: hidden; }
+  .container { max-width: 640px; margin: 0 auto; padding: 80px 24px 120px; min-height: 100vh; }
+  header { margin-bottom: 72px; }
+  .eyebrow { font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; }
+  h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(38px, 8vw, 56px); font-weight: 300; font-style: italic; line-height: 1.1; color: var(--text); margin-bottom: 16px; }
+  .subtitle { color: var(--text-muted); font-size: 12px; max-width: 380px; line-height: 1.8; }
+  .form { display: flex; flex-direction: column; gap: 40px; margin-top: 48px; }
+  .question-label { display: block; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent-dim); margin-bottom: 16px; }
+  .question-text { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 300; color: var(--text); margin-bottom: 20px; line-height: 1.4; }
+  .options { display: flex; flex-wrap: wrap; gap: 8px; }
+  .pill { cursor: pointer; padding: 8px 16px; border: 1px solid var(--border); border-radius: 2px; font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 300; color: var(--text-muted); background: transparent; transition: all 0.2s ease; letter-spacing: 0.05em; }
+  .pill.selected { border-color: var(--accent); color: var(--accent); background: rgba(200,169,126,0.06); }
+  textarea { width: 100%; background: transparent; border: none; border-bottom: 1px solid var(--border); color: var(--text); font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 300; font-style: italic; padding: 12px 0; resize: none; outline: none; line-height: 1.6; min-height: 80px; }
+  textarea::placeholder { color: var(--text-muted); font-style: italic; }
+  .divider { width: 40px; height: 1px; background: var(--border); margin: 48px 0; }
+  .submit-btn { cursor: pointer; background: transparent; border: 1px solid var(--accent-dim); color: var(--accent); font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; padding: 16px 40px; transition: all 0.3s ease; }
+  .submit-btn:hover { background: var(--accent); color: var(--bg); }
+  .loading { display: none; padding: 60px 0; text-align: center; }
   .loading.active { display: block; }
-
-  .loading-text {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 20px;
-    font-style: italic;
-    color: var(--text-muted);
-    animation: pulse 2s ease-in-out infinite;
-  }
-
-  .loading-dots {
-    display: inline-block;
-    width: 24px;
-    text-align: left;
-    animation: dots 1.5s steps(4, end) infinite;
-  }
-
-  /* Result */
-  .result {
-    display: none;
-    padding-top: 24px;
-  }
-
-  .result.active {
-    display: block;
-    animation: fadeUp 0.8s ease forwards;
-  }
-
-  .result-divider {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    margin-bottom: 48px;
-  }
-
-  .result-divider::before,
-  .result-divider::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--border);
-  }
-
-  .result-divider span {
-    font-size: 10px;
-    letter-spacing: 0.25em;
-    text-transform: uppercase;
-    color: var(--accent-dim);
-  }
-
-  .result-content {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 18px;
-    font-weight: 300;
-    line-height: 1.9;
-    color: var(--text);
-    white-space: pre-wrap;
-  }
-
-  .result-content strong {
-    font-weight: 400;
-    color: var(--accent);
-  }
-
-  .reset-btn {
-    margin-top: 48px;
-    cursor: pointer;
-    background: transparent;
-    border: none;
-    color: var(--text-muted);
-    font-family: 'DM Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    text-decoration: underline;
-    text-underline-offset: 4px;
-    padding: 0;
-    transition: color 0.2s;
-  }
-
-  .reset-btn:hover { color: var(--text); cursor: pointer; }
-
-  /* Error */
-  .error {
-    display: none;
-    padding: 20px;
-    border: 1px solid var(--danger);
-    color: #c47878;
-    font-size: 12px;
-    margin-top: 16px;
-    line-height: 1.7;
-  }
-
+  .loading-text { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-style: italic; color: var(--text-muted); }
+  .result { display: none; padding-top: 24px; }
+  .result.active { display: block; }
+  .result-divider { display: flex; align-items: center; gap: 16px; margin-bottom: 48px; }
+  .result-divider::before, .result-divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .result-divider span { font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent-dim); }
+  .result-content { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 300; line-height: 1.9; color: var(--text); white-space: pre-wrap; }
+  .result-content strong { font-weight: 400; color: var(--accent); }
+  .reset-btn { margin-top: 48px; cursor: pointer; background: transparent; border: none; color: var(--text-muted); font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: underline; text-underline-offset: 4px; padding: 0; }
+  .error { display: none; padding: 20px; border: 1px solid var(--danger); color: #c47878; font-size: 12px; margin-top: 16px; line-height: 1.7; }
   .error.active { display: block; }
-
-  /* Animations */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(16px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 0.4; }
-    50% { opacity: 0.8; }
-  }
-
-  @keyframes dots {
-    0%  { content: ''; }
-    25% { content: '.'; }
-    50% { content: '..'; }
-    75% { content: '...'; }
-  }
-
-  .divider {
-    width: 40px;
-    height: 1px;
-    background: var(--border);
-    margin: 48px 0;
-  }
 </style>
 </head>
 <body>
 <div class="container">
-
   <header>
     <div class="eyebrow">a reading oracle</div>
     <h1>what should<br>i read next?</h1>
     <p class="subtitle">answer a few questions honestly. get one book recommendation that actually fits where you are right now.</p>
   </header>
-
   <div id="formSection">
     <div class="form">
-
-      <div class="question-block">
+      <div>
         <span class="question-label">01 — mood</span>
         <div class="question-text">how are you feeling right now?</div>
-        <div class="options" id="mood-options">
+        <div class="options">
           <button class="pill" data-group="mood" data-value="restless and can't settle">restless</button>
           <button class="pill" data-group="mood" data-value="sad or grieving something">sad</button>
           <button class="pill" data-group="mood" data-value="numb and disconnected">numb</button>
@@ -383,11 +63,10 @@
           <button class="pill" data-group="mood" data-value="surprisingly okay">okay, actually</button>
         </div>
       </div>
-
-      <div class="question-block">
+      <div>
         <span class="question-label">02 — escape</span>
-        <div class="question-text">what do you want reading to do for you right now?</div>
-        <div class="options" id="escape-options">
+        <div class="question-text">what do you want reading to do for you?</div>
+        <div class="options">
           <button class="pill" data-group="escape" data-value="completely take me out of my own head">get out of my head</button>
           <button class="pill" data-group="escape" data-value="help me make sense of what I'm feeling">make sense of my feelings</button>
           <button class="pill" data-group="escape" data-value="teach me something that blows my mind">blow my mind</button>
@@ -396,51 +75,30 @@
           <button class="pill" data-group="escape" data-value="challenge how I see the world">challenge me</button>
         </div>
       </div>
-
-      <div class="question-block">
+      <div>
         <span class="question-label">03 — last loved</span>
-        <div class="question-text">a book, show, film, or song you loved recently — what was it?</div>
+        <div class="question-text">a book, show, film, or song you loved recently?</div>
         <textarea id="lastLoved" placeholder="doesn't have to be a book. could be anything." rows="3"></textarea>
       </div>
-
-      <div class="question-block">
+      <div>
         <span class="question-label">04 — right now</span>
-        <div class="question-text">what's actually going on for you lately? (optional, but the more honest the better)</div>
+        <div class="question-text">what's actually going on for you lately? (optional)</div>
         <textarea id="context" placeholder="you don't have to explain everything. just whatever feels relevant." rows="3"></textarea>
       </div>
-
     </div>
-
     <div class="divider"></div>
-
-    <div class="submit-area">
-      <button class="submit-btn" id="submitBtn" onclick="getRecommendation()">
-        <span>find my book →</span>
-      </button>
-    </div>
+    <button class="submit-btn" onclick="getRecommendation()">find my book →</button>
+    <div class="error" id="error"></div>
   </div>
-
-  <div class="loading" id="loading">
-    <div class="loading-text">reading between the lines<span class="loading-dots"></span></div>
-  </div>
-
-  <div class="error" id="error"></div>
-
+  <div class="loading" id="loading"><div class="loading-text">reading between the lines...</div></div>
   <div class="result" id="result">
     <div class="result-divider"><span>your recommendation</span></div>
     <div class="result-content" id="resultContent"></div>
     <button class="reset-btn" onclick="reset()">start over</button>
   </div>
-
 </div>
-
-><script>
-  const _p1 = "sk-ant-api03-HivdVGHmxyZCIAY";
-  const _p2 = "XrgSqRe0okU2aGniRGSyWJzKGYhxM4ub3SzkiB9b-Xs2QnWfY6xtvAG5W3gTuIcQW16qstg-7GLeeQAA";
-  window._k = _p1 + _p2;
+<script>
   const selections = {};
-
-  // Pill selection
   document.querySelectorAll('.pill').forEach(pill => {
     pill.addEventListener('click', () => {
       const group = pill.dataset.group;
@@ -449,37 +107,16 @@
       selections[group] = pill.dataset.value;
     });
   });
-
   async function getRecommendation() {
     const mood = selections['mood'] || '';
     const escape = selections['escape'] || '';
     const lastLoved = document.getElementById('lastLoved').value.trim();
     const context = document.getElementById('context').value.trim();
-
-    if (!mood && !escape && !lastLoved) {
-      showError('answer at least a couple of questions so i have something to work with.');
-      return;
-    }
-
+    if (!mood && !escape && !lastLoved) { showError('answer at least a couple of questions first.'); return; }
     document.getElementById('formSection').style.display = 'none';
     document.getElementById('loading').classList.add('active');
     document.getElementById('error').classList.remove('active');
-
-    const prompt = `You are a deeply perceptive book recommender. You don't give generic recommendations — you read between the lines of how someone is feeling and match them with a book that will genuinely meet them where they are.
-
-Here's what I know about the person right now:
-${mood ? `- Mood: ${mood}` : ''}
-${escape ? `- What they want from reading: ${escape}` : ''}
-${lastLoved ? `- Something they loved recently: ${lastLoved}` : ''}
-${context ? `- What's going on for them: ${context}` : ''}
-
-Give ONE book recommendation. Your response should:
-1. Start with the book title and author, formatted like: **Title** by Author Name
-2. Then write 3-5 sentences explaining exactly WHY this book for THIS person right now — be specific, intuitive, and emotionally intelligent. Reference what they told you. Don't be generic.
-3. End with one sentence about what they might feel after reading it.
-
-Write in a warm, direct, slightly literary tone. No fluff. No lists. Just the recommendation and the reason. Make it feel like it came from a very well-read friend who actually listened.`;
-
+    const prompt = `You are a deeply perceptive book recommender. You don't give generic recommendations — you read between the lines of how someone is feeling and match them with a book that will genuinely meet them where they are.\n\nHere's what I know about the person right now:\n${mood ? `- Mood: ${mood}` : ''}\n${escape ? `- What they want from reading: ${escape}` : ''}\n${lastLoved ? `- Something they loved recently: ${lastLoved}` : ''}\n${context ? `- What's going on for them: ${context}` : ''}\n\nImportant instructions:\n- If the person mentions a specific artist, musician, band, show, or film, use your real knowledge about that cultural figure — including any books they have recommended, their aesthetic, the themes and feelings in their work, their influences — as concrete data for your recommendation. Don't just use it as a vibe.\n- NEVER recommend Russian literature of any kind. Not Tolstoy, Dostoevsky, Bulgakov, Chekhov, Nabokov, or any other Russian author. Not The Master and Margarita or any other Russian novel.\n- Recommend something that genuinely surprises — not the most obvious or safe choice.\n\nGive ONE book recommendation. Start with **Title** by Author Name, then 3-5 sentences on why this book for this person right now — be specific, reference what they told you, connect the dots between their mood and what they loved. End with one sentence on how they might feel after. Warm, direct, literary tone. No fluff.`;
     try {
       const response = await fetch("https://api.anthropic.com/v1/messages", {
         method: "POST",
@@ -487,40 +124,23 @@ Write in a warm, direct, slightly literary tone. No fluff. No lists. Just the re
           "Content-Type": "application/json",
           "anthropic-version": "2023-06-01",
           "anthropic-dangerous-direct-browser-access": "true",
-          "x-api-key": window._k
+          "x-api-key": "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"
         },
-        body: JSON.stringify({
-          model: "claude-sonnet-4-20250514",
-          max_tokens: 1000,
-          messages: [{ role: "user", content: prompt }]
-        })
+        body: JSON.stringify({ model: "claude-sonnet-4-20250514", max_tokens: 1000, messages: [{ role: "user", content: prompt }] })
       });
-
       const data = await response.json();
-
-      if (!response.ok) throw new Error(data.error?.message || 'something went wrong');
-
+      if (!response.ok) throw new Error(data.error?.message || 'error');
       const text = data.content?.[0]?.text || '';
-      const formatted = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-
       document.getElementById('loading').classList.remove('active');
       document.getElementById('result').classList.add('active');
-      document.getElementById('resultContent').innerHTML = formatted;
-
-    } catch (err) {
+      document.getElementById('resultContent').innerHTML = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    } catch(err) {
       document.getElementById('loading').classList.remove('active');
       document.getElementById('formSection').style.display = 'block';
-      showError('something went wrong. try again in a moment.');
-      console.error(err);
+      showError('something went wrong: ' + err.message);
     }
   }
-
-  function showError(msg) {
-    const el = document.getElementById('error');
-    el.textContent = msg;
-    el.classList.add('active');
-  }
-
+  function showError(msg) { const el = document.getElementById('error'); el.textContent = msg; el.classList.add('active'); }
   function reset() {
     document.getElementById('result').classList.remove('active');
     document.getElementById('error').classList.remove('active');
@@ -529,7 +149,6 @@ Write in a warm, direct, slightly literary tone. No fluff. No lists. Just the re
     document.getElementById('context').value = '';
     document.querySelectorAll('.pill').forEach(p => p.classList.remove('selected'));
     Object.keys(selections).forEach(k => delete selections[k]);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 </script>
 </body>
