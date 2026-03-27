@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2685.4">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="en"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1">&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1">&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p class="p1">&lt;title&gt;what should i read next&lt;/title&gt;</p>
+<p class="p1">&lt;link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&amp;family=DM+Mono:wght@300;400&amp;display=swap" rel="stylesheet"&gt;</p>
+<p class="p1">&lt;style&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }</p>
+<p class="p1"><span class="Apple-converted-space">  </span>:root { --bg: #0a0a0a; --border: #222222; --text: #e8e0d4; --text-muted: #6b6560; --accent: #c8a97e; --accent-dim: #7a6448; --danger: #8b3a3a; }</p>
+<p class="p1"><span class="Apple-converted-space">  </span>html, body { height: 100%; background: var(--bg); color: var(--text); font-family: 'DM Mono', monospace; font-weight: 300; font-size: 13px; line-height: 1.7; overflow-x: hidden; }</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.container { max-width: 640px; margin: 0 auto; padding: 80px 24px 120px; min-height: 100vh; }</p>
+<p class="p1"><span class="Apple-converted-space">  </span>header { margin-bottom: 72px; }</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.eyebrow { font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; }</p>
+<p class="p1"><span class="Apple-converted-space">  </span>h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(38px, 8vw, 56px); font-weight: 300; font-style: italic; line-height: 1.1; color: var(--text); margin-bottom: 16px; }</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.subtitle { color: var(--text-muted); font-size: 12px; max-width: 380px; line-height: 1.8; }</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.form { display: flex; flex-direction: column; gap: 40px; margin-top: 48px; }</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.question-label { display: block; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent-dim); margin-bottom: 16px; }</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.question-text { font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 300; color: var(--text); margin-bottom: 20px; line-height: 1.4; }</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.options { display: flex; flex-wrap: wrap; gap: 8px; }</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.pill { cursor: pointer; padding: 8px 16px; border: 1px solid var(--border); border-radius: 2px; font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 300; color: var(--text-muted); background: transparent; transition: all 0.2s ease; letter-spacing: 0.05em; }</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.pill.selected { border-color: var(--accent); color: var(--accent); background: rgba(200,169,126,0.06); }</p>
+<p class="p1"><span class="Apple-converted-space">  </span>textarea { width: 100%; background: transparent; border: none; border-bottom: 1px solid var(--border); color: var(--text); font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 300; font-style: italic; padding: 12px 0; resize: none; outline: none; line-height: 1.6; min-height: 80px; }</p>
+<p class="p1"><span class="Apple-converted-space">  </span>textarea::placeholder { color: var(--text-muted); font-style: italic; }</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.divider { width: 40px; height: 1px; background: var(--border); margin: 48px 0; }</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.submit-btn { cursor: pointer; background: transparent; border: 1px solid var(--accent-dim); color: var(--accent); font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; padding: 16px 40px; transition: all 0.3s ease; }</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.submit-btn:hover { background: var(--accent); color: var(--bg); }</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.loading { display: none; padding: 60px 0; text-align: center; }</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.loading.active { display: block; }</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.loading-text { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-style: italic; color: var(--text-muted); }</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.result { display: none; padding-top: 24px; }</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.result.active { display: block; }</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.result-divider { display: flex; align-items: center; gap: 16px; margin-bottom: 48px; }</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.result-divider::before, .result-divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.result-divider span { font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent-dim); }</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.result-content { font-family: 'Cormorant Garamond', serif; font-size: 18px; font-weight: 300; line-height: 1.9; color: var(--text); white-space: pre-wrap; }</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.result-content strong { font-weight: 400; color: var(--accent); }</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.reset-btn { margin-top: 48px; cursor: pointer; background: transparent; border: none; color: var(--text-muted); font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: underline; text-underline-offset: 4px; padding: 0; }</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.error { display: none; padding: 20px; border: 1px solid var(--danger); color: #c47878; font-size: 12px; margin-top: 16px; line-height: 1.7; }</p>
+<p class="p1"><span class="Apple-converted-space">  </span>.error.active { display: block; }</p>
+<p class="p1">&lt;/style&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p1">&lt;div class="container"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;header&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="eyebrow"&gt;a reading oracle&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;h1&gt;what should&lt;br&gt;i read next?&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;p class="subtitle"&gt;answer a few questions honestly. get one book recommendation that actually fits where you are right now.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/header&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div id="formSection"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="form"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;span class="question-label"&gt;01 — mood&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="question-text"&gt;how are you feeling right now?&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="options"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;button class="pill" data-group="mood" data-value="restless and can't settle"&gt;restless&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;button class="pill" data-group="mood" data-value="sad or grieving something"&gt;sad&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;button class="pill" data-group="mood" data-value="numb and disconnected"&gt;numb&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;button class="pill" data-group="mood" data-value="angry at everything"&gt;angry&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;button class="pill" data-group="mood" data-value="anxious about the future"&gt;anxious&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;button class="pill" data-group="mood" data-value="curious and hungry to learn"&gt;curious&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;button class="pill" data-group="mood" data-value="bored with everything"&gt;bored&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;button class="pill" data-group="mood" data-value="surprisingly okay"&gt;okay, actually&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;span class="question-label"&gt;02 — escape&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="question-text"&gt;what do you want reading to do for you?&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="options"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;button class="pill" data-group="escape" data-value="completely take me out of my own head"&gt;get out of my head&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;button class="pill" data-group="escape" data-value="help me make sense of what I'm feeling"&gt;make sense of my feelings&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;button class="pill" data-group="escape" data-value="teach me something that blows my mind"&gt;blow my mind&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;button class="pill" data-group="escape" data-value="just entertain me, no effort"&gt;pure entertainment&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;button class="pill" data-group="escape" data-value="make me feel less alone"&gt;feel less alone&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>&lt;button class="pill" data-group="escape" data-value="challenge how I see the world"&gt;challenge me&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;span class="question-label"&gt;03 — last loved&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="question-text"&gt;a book, show, film, or song you loved recently?&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;textarea id="lastLoved" placeholder="doesn't have to be a book. could be anything." rows="3"&gt;&lt;/textarea&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;span class="question-label"&gt;04 — right now&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;div class="question-text"&gt;what's actually going on for you lately? (optional)&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>&lt;textarea id="context" placeholder="you don't have to explain everything. just whatever feels relevant." rows="3"&gt;&lt;/textarea&gt;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="divider"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;button class="submit-btn" onclick="getRecommendation()"&gt;find my book →&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="error" id="error"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="loading" id="loading"&gt;&lt;div class="loading-text"&gt;reading between the lines...&lt;/div&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="result" id="result"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="result-divider"&gt;&lt;span&gt;your recommendation&lt;/span&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="result-content" id="resultContent"&gt;&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;button class="reset-btn" onclick="reset()"&gt;start over&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
+<p class="p1">&lt;/div&gt;</p>
+<p class="p1">&lt;script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const a1 = "sk-ant-api03-HivdVGHmxy";</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const a2 = "ZCIAYXrgSqRe0okU2aGniRGSyWJzKGYhxM4ub3SzkiB9b-Xs2QnWfY6xtvAG5W3gTuIcQW16qstg-7GLeeQAA";</p>
+<p class="p1"><span class="Apple-converted-space">  </span>const selections = {};</p>
+<p class="p1"><span class="Apple-converted-space">  </span>document.querySelectorAll('.pill').forEach(pill =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>pill.addEventListener('click', () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const group = pill.dataset.group;</p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.querySelectorAll(`[data-group="${group}"]`).forEach(p =&gt; p.classList.remove('selected'));</p>
+<p class="p1"><span class="Apple-converted-space">      </span>pill.classList.add('selected');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>selections[group] = pill.dataset.value;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>});</p>
+<p class="p1"><span class="Apple-converted-space">  </span>});</p>
+<p class="p1"><span class="Apple-converted-space">  </span>async function getRecommendation() {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const mood = selections['mood'] || '';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const escape = selections['escape'] || '';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const lastLoved = document.getElementById('lastLoved').value.trim();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const context = document.getElementById('context').value.trim();</p>
+<p class="p1"><span class="Apple-converted-space">    </span>if (!mood &amp;&amp; !escape &amp;&amp; !lastLoved) { showError('answer at least a couple of questions first.'); return; }</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('formSection').style.display = 'none';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('loading').classList.add('active');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('error').classList.remove('active');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>const prompt = `You are a deeply perceptive book recommender. You don't give generic recommendations — you read between the lines of how someone is feeling and match them with a book that will genuinely meet them where they are.\n\nHere's what I know about the person right now:\n${mood ? `- Mood: ${mood}` : ''}\n${escape ? `- What they want from reading: ${escape}` : ''}\n${lastLoved ? `- Something they loved recently: ${lastLoved}` : ''}\n${context ? `- What's going on for them: ${context}` : ''}\n\nGive ONE book recommendation. Start with **Title** by Author Name, then 3-5 sentences on why this book for this person right now. End with one sentence on how they might feel after. Warm, direct, literary tone. No fluff.`;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>try {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const response = await fetch("https://api.anthropic.com/v1/messages", {</p>
+<p class="p1"><span class="Apple-converted-space">        </span>method: "POST",</p>
+<p class="p1"><span class="Apple-converted-space">        </span>headers: {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>"Content-Type": "application/json",</p>
+<p class="p1"><span class="Apple-converted-space">          </span>"anthropic-version": "2023-06-01",</p>
+<p class="p1"><span class="Apple-converted-space">          </span>"anthropic-dangerous-direct-browser-access": "true",</p>
+<p class="p1"><span class="Apple-converted-space">          </span>"x-api-key": a1 + a2</p>
+<p class="p1"><span class="Apple-converted-space">        </span>},</p>
+<p class="p1"><span class="Apple-converted-space">        </span>body: JSON.stringify({ model: "claude-sonnet-4-20250514", max_tokens: 1000, messages: [{ role: "user", content: prompt }] })</p>
+<p class="p1"><span class="Apple-converted-space">      </span>});</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const data = await response.json();</p>
+<p class="p1"><span class="Apple-converted-space">      </span>if (!response.ok) throw new Error(data.error?.message || 'error');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>const text = data.content?.[0]?.text || '';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.getElementById('loading').classList.remove('active');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.getElementById('result').classList.add('active');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.getElementById('resultContent').innerHTML = text.replace(/\*\*(.*?)\*\*/g, '&lt;strong&gt;$1&lt;/strong&gt;');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>} catch(err) {</p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.getElementById('loading').classList.remove('active');</p>
+<p class="p1"><span class="Apple-converted-space">      </span>document.getElementById('formSection').style.display = 'block';</p>
+<p class="p1"><span class="Apple-converted-space">      </span>showError('something went wrong: ' + err.message);</p>
+<p class="p1"><span class="Apple-converted-space">    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p1"><span class="Apple-converted-space">  </span>function showError(msg) { const el = document.getElementById('error'); el.textContent = msg; el.classList.add('active'); }</p>
+<p class="p1"><span class="Apple-converted-space">  </span>function reset() {</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('result').classList.remove('active');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('error').classList.remove('active');</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('formSection').style.display = 'block';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('lastLoved').value = '';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.getElementById('context').value = '';</p>
+<p class="p1"><span class="Apple-converted-space">    </span>document.querySelectorAll('.pill').forEach(p =&gt; p.classList.remove('selected'));</p>
+<p class="p1"><span class="Apple-converted-space">    </span>Object.keys(selections).forEach(k =&gt; delete selections[k]);</p>
+<p class="p1"><span class="Apple-converted-space">  </span>}</p>
+<p class="p1">&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
